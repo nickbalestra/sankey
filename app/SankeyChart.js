@@ -39,7 +39,7 @@ export default class extends React.Component {
 
 
     // ========================================================================
-    // Initialize and append the svg canvas to the page
+    // Initialize and append the svg canvas to faux-DOM
     // ========================================================================
     var svgNode = ReactFauxDOM.createElement('div');
     
@@ -65,14 +65,13 @@ export default class extends React.Component {
       links: _.cloneDeep(this.state.links)
     };
 
-    // use the sankey plugin to calculate and enrich them
     sankey.nodes(graph.nodes)
         .links(graph.links)
         .layout(32);
 
 
     // ========================================================================
-    // Add in the links
+    // Add links
     // ========================================================================
     var link = svg.append("g").selectAll(".link")
         .data(graph.links)
@@ -82,13 +81,13 @@ export default class extends React.Component {
         .attr("d", path)
         .style("stroke-width", (d) => Math.max(1, d.dy))
 
-    // add the link titles
+    // add link titles
     link.append("title")
         .text((d) => d.source.name + " → " + d.target.name + "\n Weight: " + format(d.value));
 
 
     // ========================================================================
-    // add in the nodes
+    // Add nodes
     // ========================================================================
     var node = svg.append("g").selectAll(".node")
         .data(graph.nodes)
@@ -97,14 +96,14 @@ export default class extends React.Component {
         .on('click', this.props.openModal) // register eventListener
         .attr("transform", (d) => "translate(" + d.x + "," + d.y + ")")
 
-    // add the rectangles for the nodes
+    // add nodes rect
     node.append("rect")
         .attr("height", (d) => d.dy)
         .attr("width", sankey.nodeWidth())
         .append("title")
         .text((d) => d.name + "\n" + format(d.value));
 
-    // add in the title for the nodes
+    // add nodes text
     node.append("text")
         .attr("x", -6)
         .attr("y", (d) => d.dy / 2)
@@ -115,7 +114,9 @@ export default class extends React.Component {
         .attr("x", 6 + sankey.nodeWidth())
         .attr("text-anchor", "start");
 
-
+    // ========================================================================
+    // Render the faux-DOM to React elements
+    // ========================================================================
     return svgNode.toReact()
   }
 }
