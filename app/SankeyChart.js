@@ -33,10 +33,7 @@ export default class extends React.Component {
     var height = 400 - margin.top - margin.bottom;
 
     var format = (d) => formatNumber(d);
-    
-
     var formatNumber = d3.format(",.0f"); // zero decimal places
-
 
     // ========================================================================
     // Initialize and append the svg canvas to faux-DOM
@@ -49,7 +46,6 @@ export default class extends React.Component {
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     
-
     // ========================================================================
     // Set the sankey diagram properties
     // ========================================================================
@@ -69,7 +65,6 @@ export default class extends React.Component {
         .links(graph.links)
         .layout(32);
 
-
     // ========================================================================
     // Add links
     // ========================================================================
@@ -84,7 +79,6 @@ export default class extends React.Component {
     // add link titles
     link.append("title")
         .text((d) => d.source.name + " → " + d.target.name + "\n Weight: " + format(d.value));
-
 
     // ========================================================================
     // Add nodes
