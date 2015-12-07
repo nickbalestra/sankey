@@ -6,8 +6,8 @@ export default class extends React.Component {
     super()
     
     this.state = {
-      source: 0,
-      target: 0,
+      source: NaN,
+      target: NaN,
       weight: 'Weight'
     };
 
@@ -41,7 +41,7 @@ export default class extends React.Component {
         return <option value={node.node} key={i}>{node.name}</option>
       });  
 
-    sourceNodes.unshift(<option key='000'>{'Select Source'}</option>);
+    sourceNodes.unshift(<option value={NaN} key='000'>{'Select Source'}</option>);
 
     var targetNodes = this.props.nodes.
       filter((node, i) => {
@@ -51,7 +51,7 @@ export default class extends React.Component {
         return <option value={node.node} key={i}>{node.name}</option>
       });
 
-    targetNodes.unshift(<option key='000'>{'Select Target'}</option>);
+    targetNodes.unshift(<option value={NaN} key='000'>{'Select Target'}</option>);
 
     return (    
       <div className="input-group">

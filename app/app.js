@@ -72,7 +72,8 @@ class App extends React.Component {
 
 
   addLink(source, target, value) {
-    if (this.state.nodes.length > 1) {
+    if (this.state.nodes.length > 1 && !isNaN(value) && !isNaN(source) && !isNaN(target)) {
+      
       var links = this.state.links;
       var idx = links.length;
 
