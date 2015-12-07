@@ -25,19 +25,19 @@ You can import/export sankey diagrams using the following json format:
 ## Structure:
 
 - app/
-  toolbars/
-    - AddLink.js
-    - AddNode.js
-    - FooterBar.js
-    - TopBar.js
+    - toolbars/
+      - AddLink.js
+      - AddNode.js
+      - FooterBar.js
+      - TopBar.js
   - app.js
   - sankey.css
   - SankayChart.js
   - utils.js
 - public/
-  fonts/          // will be compiled by webpack
-  - build.js      // will be compiled by webpack
-  - styles.css    // will be compiled by webpack
+  - fonts/        `will be compiled by webpack`
+  - build.js      `will be compiled by webpack`
+  - styles.css    `will be compiled by webpack`
   - index.html
   - emptyData.json
   - sampleData.json
