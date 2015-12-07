@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var path = require('path');
 var node_modules_dir = path.resolve(__dirname, 'node_modules');
 
@@ -13,12 +14,15 @@ module.exports = {
   module: {
     loaders: [
       {test: /\.js$/, exclude: [node_modules_dir], loader: "babel", query: {presets:['react', 'es2015']}},
-      { test: /\.css$/, loader: "style!css" },
-      { test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/, loader: "file-loader" }
+      { test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader") },
+      { test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/, loader: "url-loader?limit=1024&name=fonts/[name].[ext]" }
     ]
   },
 
   plugins: [
-    //   new webpack.optimize.CommonsChunkPlugin('public/shared.js'),
- ]
+    new ExtractTextPlugin("styles.css"),
+    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurenceOrderPlugin()
+  ]
 };
