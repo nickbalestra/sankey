@@ -71,7 +71,6 @@ body {
   margin-top: 8px;
 }
 
-
 select.btn {
   -webkit-appearance: none;
   max-width: 115px;
@@ -81,7 +80,6 @@ select.btn {
   z-index: 0;
 }
 
-
 .btn-file {
     position: relative;
     overflow: hidden;
@@ -90,24 +88,23 @@ select.btn {
 }
 
 .footer {
-  /*margin-top:60px;*/
   clear: both;
 }
-.btn-file input[type=file] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    font-size: 100px;
-    text-align: right;
-    filter: alpha(opacity=0);
-    opacity: 0;
-    outline: none;
-    background: white;
-    cursor: inherit;
-    display: block;
 
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
 }
 
 .btn-primary {
@@ -145,4 +142,13 @@ a:hover {
 }
 .chart {
   margin-bottom: 20px;
+}
+
+.legend {
+  background-color: #fcf8e3;
+  padding-left: 40px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 5px;
+  color: #666;
 }
