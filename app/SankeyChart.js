@@ -110,40 +110,44 @@ export default class extends React.Component {
 
     // Above D3 manipaluation equal to following jsx if didn't rely on faux-dom 
     // ------------------------------------------------------------------------
-    // var links = graph.links.map((link, i) => {
-    //   return (
-    //     <path key={i} className="link" onClick={this.props.openModal} d={path(link)} style={{strokeWidth: Math.max(1, link.dy)}}>
-    //       <title>{link.source.name + " → " + link.target.name + "\n Weight: " + format(link.value)}</title>
-    //     </path>
-    //   );
-    // });
+    var links = graph.links.map((link, i) => {
+      return (
+        <g>
+          <path key={i} className="link" onClick={()=>{this.props.openModal(link)}} d={path(link)} style={{strokeWidth: Math.max(1, link.dy)}}>
+            <title>{link.source.name + " → " + link.target.name + "\n Weight: " + format(link.value)}</title>
+          </path>
+        </g>
+      );
+    });
 
-    // var nodes = graph.nodes.map((node, i) => {
-    //   return (
-    //     <g key={i} className="node" onClick={this.props.openModal} transform={"translate(" + node.x + "," + node.y + ")"}>
-    //       <rect height={node.dy} width={sankey.nodeWidth()}>
-    //         <title>{node.name + "\n" + format(node.value)}</title>
-    //       </rect>
-    //       { (node.x >= width / 2) ? 
-    //         <text x={-6} y={node.dy / 2} dy={".35em"} textAnchor={"end"} >{node.name}</text> :
-    //         <text x={6 + sankey.nodeWidth()} y={node.dy / 2} dy={".35em"} textAnchor={"start"} >{node.name}</text>
-    //       }
-    //     </g>
-    //   );
-    // });
-    
-    // <svg width={width + margin.left + margin.right} height={height + margin.top + margin.bottom}>
-    //   <g transform={"translate(" + margin.left + "," + margin.top + ")"}>
-    //     {links}
-    //   </g>
-    //   <g>
-    //     {nodes}
-    //   </g>
-    // </svg>
+    var nodes = graph.nodes.map((node, i) => {
+      return (
+        <g key={i} className="node" onClick={()=>{this.props.openModal(node)}} transform={"translate(" + node.x + "," + node.y + ")"}>
+          <rect height={node.dy} width={sankey.nodeWidth()}>
+            <title>{node.name + "\n" + format(node.value)}</title>
+          </rect>
+          { (node.x >= width / 2) ? 
+            <text x={-6} y={node.dy / 2} dy={".35em"} textAnchor={"end"} >{node.name}</text> :
+            <text x={6 + sankey.nodeWidth()} y={node.dy / 2} dy={".35em"} textAnchor={"start"} >{node.name}</text>
+          }
+        </g>
+      );
+    });
 
     // ========================================================================
     // Render the faux-DOM to React elements
     // ========================================================================
-    return svgNode.toReact()
+    return svgNode.toReact();
+
+    // JSX rendering return if didn't rely on faux-dom
+    // ------------------------------------------------------------------------
+    // return (
+    //   <svg width={width + margin.left + margin.right} height={height + margin.top + margin.bottom}>
+    //     <g transform={"translate(" + margin.left + "," + margin.top + ")"}>
+    //       {links}
+    //       {nodes}
+    //     </g>
+    //   </svg>
+    // );
   }
 }
