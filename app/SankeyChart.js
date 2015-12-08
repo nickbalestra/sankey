@@ -110,22 +110,26 @@ export default class extends React.Component {
 
     // Above D3 manipaluation equal to following jsx if didn't rely on faux-dom 
     // ------------------------------------------------------------------------
-    // var links = graph.links.map((link) => {
-    //   <path className="link" onClick={this.props.openModal} d={path} style={"stroke-width", Math.max(1, link.dy)}>
-    //     <title>{link.source.name + " → " + link.target.name + "\n Weight: " + format(link.value)}</title>
-    //   </path>
+    // var links = graph.links.map((link, i) => {
+    //   return (
+    //     <path key={i} className="link" onClick={this.props.openModal} d={path(link)} style={{strokeWidth: Math.max(1, link.dy)}}>
+    //       <title>{link.source.name + " → " + link.target.name + "\n Weight: " + format(link.value)}</title>
+    //     </path>
+    //   );
     // });
 
-    // var nodes - graph.nodes.map((node) => {
-    //   <g className="node" onClick={this.props.openModal} transform={"translate(" + node.x + "," + node.y + ")"}>
-    //     <rect height={node.dy} width={sankey.nodeWidth()}>
-    //       <title>{node.name + "\n" + format(d.value)}</title>
-    //     </rect>
-    //     { (node.x >= width / 2) ? 
-    //       <text x={-6} y={node.dy / 2} dy={".35em"} textAnchor={"end"} >{node.name}</text> :
-    //       <text x={6 + sankey.nodeWidth()} y={node.dy / 2} dy={".35em"} textAnchor={"start"} >{node.name}</text>
-    //     }
-    //   </g>
+    // var nodes = graph.nodes.map((node, i) => {
+    //   return (
+    //     <g key={i} className="node" onClick={this.props.openModal} transform={"translate(" + node.x + "," + node.y + ")"}>
+    //       <rect height={node.dy} width={sankey.nodeWidth()}>
+    //         <title>{node.name + "\n" + format(node.value)}</title>
+    //       </rect>
+    //       { (node.x >= width / 2) ? 
+    //         <text x={-6} y={node.dy / 2} dy={".35em"} textAnchor={"end"} >{node.name}</text> :
+    //         <text x={6 + sankey.nodeWidth()} y={node.dy / 2} dy={".35em"} textAnchor={"start"} >{node.name}</text>
+    //       }
+    //     </g>
+    //   );
     // });
     
     // <svg width={width + margin.left + margin.right} height={height + margin.top + margin.bottom}>
@@ -133,7 +137,7 @@ export default class extends React.Component {
     //     {links}
     //   </g>
     //   <g>
-    //    {links}
+    //     {nodes}
     //   </g>
     // </svg>
 
