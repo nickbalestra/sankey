@@ -36,23 +36,12 @@ export default class extends React.Component {
     var formatNumber = d3.format(",.0f"); // zero decimal places
 
     // ========================================================================
-    // Initialize and append the svg canvas to faux-DOM
-    // ========================================================================
-    var svgNode = ReactFauxDOM.createElement('div');
-    
-    var svg = d3.select(svgNode).append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-    // ========================================================================
     // Set the sankey diagram properties
     // ========================================================================
     var sankey = d3.sankey()
-        .size([width, height])
-        .nodeWidth(15)
-        .nodePadding(10);
+      .size([width, height])
+      .nodeWidth(15)
+      .nodePadding(10);
 
     var path = sankey.link();
 
@@ -62,8 +51,19 @@ export default class extends React.Component {
     };
 
     sankey.nodes(graph.nodes)
-        .links(graph.links)
-        .layout(32);
+      .links(graph.links)
+      .layout(32);
+
+    // ========================================================================
+    // Initialize and append the svg canvas to faux-DOM
+    // ========================================================================
+    var svgNode = ReactFauxDOM.createElement('div');
+    
+    var svg = d3.select(svgNode).append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     // ========================================================================
     // Add links
