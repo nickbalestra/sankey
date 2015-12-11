@@ -24,7 +24,7 @@ You can import/export sankey diagrams using the following json format:
 
 ## Install:
 
-Make sure you have webpack installed globably:
+Make sure you have webpack installed globally:
 
 `$ npm i -g webpack`
 
